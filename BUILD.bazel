@@ -25,31 +25,14 @@ cc_library(
     srcs = glob([
         "src/tbb/*.cpp",
         "src/tbb/*.h",
-    ]) + select({
-        "@platforms//cpu:x86_64": glob(["src/tbb/tools_api/**/*.h"]),
-        "//conditions:default": [],
-    }),
+        "src/tbb/tools_api/**/*.h",
+    ]),
     hdrs = glob([
         "include/tbb/*.h",
         "include/oneapi/*.h",
         "include/oneapi/tbb/*.h",
         "include/oneapi/tbb/detail/*.h",
     ]),
-    copts = ["-w"] + select({
-        "@bazel_tools//platforms:windows": [""],
-        "//conditions:default": ["-mwaitpkg"],
-    }),
-    defines =
-        select({
-            "@platforms//cpu:x86_64": ["__TBB_NO_IMPLICIT_LINKAGE"],
-            "//conditions:default": [
-                "USE_PTHREAD",
-            ],
-        }) +
-        select({
-            "@bazel_tools//platforms:osx": ["_XOPEN_SOURCE"],
-            "//conditions:default": [],
-        }),
     includes = [
         "include",
     ],
@@ -63,20 +46,10 @@ cc_library(
             ],
             "//conditions:default": ["-pthread"],
         }),
-    local_defines = select({
-        "@platforms//cpu:x86_64": [
-            "__TBB_USE_ITT_NOTIFY",
-        ],
-        "//conditions:default": [],
-    }) + [
+    local_defines = [
         "__TBB_BUILD",
     ],
-    textual_hdrs = select({
-        "@platforms//cpu:x86_64": [
-            "src/tbb/tools_api/ittnotify_static.c",
-        ],
-        "//conditions:default": [],
-    }),
+    textual_hdrs = ["src/tbb/tools_api/ittnotify_static.c"],
 )
 
 cc_library(
@@ -101,9 +74,9 @@ cc_library(
     includes = [
         "include",
     ],
-    local_defines = [
-        "__TBBMALLOC_BUILD",
-    ],
+    #local_defines = [
+     #   "__TBBMALLOC_BUILD",
+    #],
 )
 
 cc_library(
