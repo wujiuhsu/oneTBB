@@ -26,7 +26,7 @@ cc_library(
         "src/tbb/*.cpp",
         "src/tbb/*.h",
         "src/tbb/tools_api/**/*.h",
-    ])
+    ]),
     hdrs = glob([
         "include/tbb/*.h",
         "include/oneapi/*.h",
