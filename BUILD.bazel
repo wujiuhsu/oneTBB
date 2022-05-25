@@ -46,9 +46,9 @@ cc_library(
             ],
             "//conditions:default": ["-pthread"],
         }),
-    local_defines = [
-        "__TBB_BUILD",
-    ],
+   # local_defines = [
+    #    "__TBB_BUILD",
+    #],
     textual_hdrs = ["src/tbb/tools_api/ittnotify_static.c"],
 )
 
