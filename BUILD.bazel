@@ -36,16 +36,7 @@ cc_library(
     includes = [
         "include",
     ],
-    linkopts =
-        select({
-            "@bazel_tools//platforms:windows": [],
-            "@bazel_tools//platforms:linux": [
-                "-ldl",
-                "-pthread",
-                "-lrt",
-            ],
-            "//conditions:default": ["-pthread"],
-        }),
+    linkopts = ["-pthread"],
    # local_defines = [
     #    "__TBB_BUILD",
     #],
