@@ -33,12 +33,11 @@ cc_library(
         "include/oneapi/tbb/detail/*.h",
     ]),
     copts = ["-w", "-mwaitpkg",],
-    defines = ["USE_PTHREAD",],
+    defines = ["USE_PTHREAD", "__TBB_BUILD", ],
     includes = [
         "include",
     ],
     linkopts = ["-ldl", "-pthread", "-lrt",],
-    local_defines = ["__TBB_BUILD",],
 )
 
 cc_library(
@@ -63,9 +62,7 @@ cc_library(
     includes = [
         "include",
     ],
-    local_defines = [
-        "__TBBMALLOC_BUILD",
-    ],
+	defines = ["__TBBMALLOC_BUILD", ],
 )
 
 cc_library(
