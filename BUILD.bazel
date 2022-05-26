@@ -25,7 +25,6 @@ cc_library(
     srcs = glob([
         "src/tbb/*.cpp",
         "src/tbb/*.h",
-		"src/tbb/tools_api/**/*.h",
     ]),
     hdrs = glob([
         "include/tbb/*.h",
@@ -34,13 +33,12 @@ cc_library(
         "include/oneapi/tbb/detail/*.h",
     ]),
     copts = ["-w", "-mwaitpkg",],
-    defines = ["__TBB_NO_IMPLICIT_LINKAGE",],
+    defines = ["USE_PTHREAD",],
     includes = [
         "include",
     ],
     linkopts = ["-ldl", "-pthread", "-lrt",],
-    local_defines = ["__TBB_BUILD", "__TBB_USE_ITT_NOTIFY",],
-    textual_hdrs = ["src/tbb/tools_api/ittnotify_static.c",],
+    local_defines = ["__TBB_BUILD",],
 )
 
 cc_library(
