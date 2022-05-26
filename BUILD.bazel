@@ -62,7 +62,7 @@ cc_library(
     includes = [
         "include",
     ],
-	defines = ["__TBBMALLOC_BUILD", ],
+    defines = ["__TBBMALLOC_BUILD", ],
 )
 
 cc_library(
